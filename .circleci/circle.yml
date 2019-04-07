@@ -1,13 +1,8 @@
-machine:
-  python:
-    version: 3.5.2
-dependencies:
-  override:
-    - pip install -r requirements.txt
-test:
-  override:
-    - nosetests tests/math-test.py
-  post:
-    - coverage run src/*.py
-    - coverage report
-    - coveralls
+version: 2
+jobs:
+  build:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
