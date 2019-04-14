@@ -4,5 +4,3 @@ class Math():
             return 'Invalid input'
         else:
             return x + y
-
-Math.addition(3, 4)
