@@ -5,3 +5,4 @@ class Math():
         else:
             return x + y
 
+Math.addition(3, 4)
