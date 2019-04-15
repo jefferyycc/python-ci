@@ -1,4 +1,4 @@
-class Math():
+class Math(object):
     def increment(self):
         return self + 1
 
