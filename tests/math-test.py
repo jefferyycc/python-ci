@@ -12,6 +12,9 @@ class MathTest(unittest.TestCase):
     def test_decrement_returns_correct_result(self):
         self.assertEqual(Math.decrement(3), 2)
 
+    def test_decrement_returns_error_message_if_args_not_numbers(self):
+        self.assertRaises(ValueError, Math.decrement, 'three')
+
     def test_addition_returns_correct_result(self):
         result = Math.addition(1, 2)
         self.assertEqual(3, result)

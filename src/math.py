@@ -7,7 +7,11 @@ class Math(object):
             raise ValueError
 
     def decrement(x):
-        return x - 1
+        number_types = (int, float, complex)
+        if isinstance(x, number_types):
+            return x - 1
+        else:
+            raise ValueError
 
     def addition(x, y):
         number_types = (int, float, complex)
