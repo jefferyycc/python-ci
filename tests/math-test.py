@@ -35,3 +35,12 @@ class MathTest(unittest.TestCase):
         result = self.Math.subtraction(5, 2)
         self.assertEqual(3, result)
 
+    def test_subtraction_returns_error_message_if_both_args_not_numbers(self):
+        self.assertRaises(ValueError, self.Math.subtraction, 'five', 'two')
+
+    def test_subtraction_returns_error_message_if_x_args_not_numbers(self):
+        self.assertRaises(ValueError, self.Math.subtraction, '5', 'two')
+
+    def test_subtraction_returns_error_message_if_y_args_not_numbers(self):
+        self.assertRaises(ValueError, self.Math.subtraction, 'five', '2')
+
