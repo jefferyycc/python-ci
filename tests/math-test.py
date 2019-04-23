@@ -44,7 +44,6 @@ class MathTest(unittest.TestCase):
     def test_subtraction_returns_error_message_if_y_args_not_numbers(self):
         self.assertRaises(ValueError, self.Math.subtraction, 'five', '2')
         
-        
     def test_multiply_returns_correct_result(self):
         result = self.Math.multiply(5, 2)
         self.assertEqual(10, result)
@@ -57,4 +56,17 @@ class MathTest(unittest.TestCase):
 
     def test_multiply_returns_error_message_if_y_args_not_numbers(self):
         self.assertRaises(ValueError, self.Math.multiply, 'five', '2')
+
+    def test_division_returns_correct_result(self):
+        result = self.Math.division(10, 2)
+        self.assertEqual(5, result)
+
+    def test_division_returns_error_message_if_both_args_not_numbers(self):
+        self.assertRaises(ValueError, self.Math.division, 'five', 'two')
+
+    def test_division_returns_error_message_if_x_args_not_numbers(self):
+        self.assertRaises(ValueError, self.Math.division, '5', 'two')
+
+    def test_division_returns_error_message_if_y_args_not_numbers(self):
+        self.assertRaises(ValueError, self.Math.division, 'five', '2')
 

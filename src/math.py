@@ -31,3 +31,9 @@ class Math(object):
             return x * y
         else:
             raise ValueError
+
+    def division(self, x, y):
+        if isinstance(x, self.number_types) and isinstance(y, self.number_types):
+            return x / y
+        else:
+            raise ValueError
