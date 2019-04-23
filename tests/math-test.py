@@ -6,6 +6,9 @@ class MathTest(unittest.TestCase):
     def test_increment_returns_correct_result(self):
         self.assertEqual(Math.increment(3), 4)
 
+    def test_increment_returns_error_message_if_args_not_numbers(self):
+        self.assertRaises(ValueError, Math.increment, 'three')
+
     def test_decrement_returns_correct_result(self):
         self.assertEqual(Math.decrement(3), 2)
 

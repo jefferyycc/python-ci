@@ -1,15 +1,17 @@
 class Math(object):
-    def increment(self):
-        return self + 1
+    def increment(x):
+        number_types = (int, float, complex)
+        if isinstance(x, number_types):
+            return x + 1
+        else:
+            raise ValueError
 
-    def decrement(self):
-        return self - 1
+    def decrement(x):
+        return x - 1
 
     def addition(x, y):
         number_types = (int, float, complex)
-
         if isinstance(x, number_types) and isinstance(y, number_types):
             return x + y
         else:
             raise ValueError
-        return x + y
