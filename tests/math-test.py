@@ -79,3 +79,13 @@ class MathTest(unittest.TestCase):
         calc_str = "1 + 2 * 3"
         result = self.Math.calc(calc_str)
         self.assertEqual(7, result)
+
+    def test_calculater_sub_div_returns_correct_result(self):
+        calc_str = "9 / 3 + 1"
+        result = self.Math.calc(calc_str)
+        self.assertEqual(4, result)
+
+    def test_calculater__sub_div_returns_correct_result_but_sub_symbol_first(self):
+        calc_str = "1 + 9 / 3"
+        result = self.Math.calc(calc_str)
+        self.assertEqual(4, result)
