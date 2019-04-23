@@ -89,3 +89,8 @@ class MathTest(unittest.TestCase):
         calc_str = "1 + 9 / 3"
         result = self.Math.calc(calc_str)
         self.assertEqual(4, result)
+
+    def test_calculater_all_returns_correct_result(self):
+        calc_str = "2 - 9 / 3 + 2 + 1 * 7"
+        result = self.Math.calc(calc_str)
+        self.assertEqual(8, result)
