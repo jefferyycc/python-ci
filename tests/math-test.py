@@ -70,3 +70,12 @@ class MathTest(unittest.TestCase):
     def test_division_returns_error_message_if_y_args_not_numbers(self):
         self.assertRaises(ValueError, self.Math.division, 'five', '2')
 
+    def test_calculater_returns_correct_result(self):
+        calc_str = "2 * 3 + 1"
+        result = self.Math.calc(calc_str)
+        self.assertEqual(7, result)
+
+    def test_calculater_returns_correct_result_but_add_symbol_first(self):
+        calc_str = "1 + 2 * 3"
+        result = self.Math.calc(calc_str)
+        self.assertEqual(7, result)
