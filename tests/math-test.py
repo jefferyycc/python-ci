@@ -1,6 +1,7 @@
 import unittest
 from src.math import Math
 
+
 class MathTest(unittest.TestCase):
     def setUp(self):
         self.Math = Math()
@@ -107,8 +108,27 @@ class MathTest(unittest.TestCase):
         result = self.Math.calc_p(calc_str)
         self.assertEqual(8, result)
 
+    def test_calculater_parentheses_valid_returns_true(self):
+        calc_str = "2 * (3 + 1)"
+        result = self.Math.isParenthesesValid(calc_str)
+        self.assertTrue(result)
+
+    def test_calculater_parentheses_valid_with_redundant_returns_true(self):
+        calc_str = "(2) * (3 + 1)"
+        result = self.Math.isParenthesesValid(calc_str)
+        self.assertTrue(result)
+
+    def test_calculater_parentheses_valid_but_abnormal_parentheses(self):
+        calc_str = "2) * (3 + 1)"
+        result = self.Math.isParenthesesValid(calc_str)
+        self.assertFalse(result)
+
     def test_calculater_parentheses_all_symbols_returns_correct_result(self):
         calc_str = "( 2 - 9 ) / 7 + ((2 + 1) * 7)"
         result = self.Math.calc_p(calc_str)
         self.assertEqual(20, result)
 
+    def test_calculater_parentheses_all_symbols_but_abnormal_parentheses(self):
+        calc_str = "( 2 - 9 ) / 7) + ((2 + 1) * 7)"
+        result = self.Math.isParenthesesValid(calc_str)
+        self.assertFalse(result)

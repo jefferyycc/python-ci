@@ -1,3 +1,6 @@
+import re
+
+
 class Math(object):
     def __init__(self):
         self.number_types = (int, float, complex)
@@ -63,36 +66,67 @@ class Math(object):
                 num = 0
         return sum(stack)
 
-    def calc_p(self, input):
-        s = input
-        s = s + "$"
-        def helper(stack, i):
-            num = 0
-            sign = '+'
-            while i < len(s):
-                c = s[i]
-                if c == " ":
-                    i = self.increment(i)
-                    continue
-                if c.isdigit():
-                    num = self.multiply(num, 10) + int(c)
-                    i = self.increment(i)
-                elif c == '(':
-                    num, i = helper([], i + 1)
-                else:
-                    if sign == '+':
-                        stack.append(num)
-                    if sign == '-':
-                        stack.append(-num)
-                    if sign == '*':
-                        stack.append(self.multiply(stack.pop(), num))
-                    if sign == '/':
-                        stack.append(self.division(int(stack.pop()),num))
-                    num = 0
-                    i = self.increment(i)
-                    if c == ')':
-                        return sum(stack), i
-                    sign = c
-            return sum(stack)
+    def isParenthesesValid(self, s):
+        # if s is None: return True
+        # elif (len(s) < 2): return False
+        # else:
+        s = s.replace(" ", "")
+        print(s)
+        dict = {")": "("}
+        stack = []
+        for char in s:
+            print(char)
+            if char in dict.values():
+                stack.append(char)
+            elif char in dict.keys():
+                if stack == [] or dict[char] != stack.pop():
+                    return False
+            elif char.isdigit():
+                print("meet digit")
+                continue
+            elif char == '+' or char == '-' or char == '*' or char == '/':
+                print("meet symbol")
+                continue
+            # elif re.compile("[+\-*/]+").match(char):
+            #     continue
+            else:
+                return False
+        return stack == []
 
-        return helper([], 0)
+    def calc_p(self, input):
+        if (self.isParenthesesValid(input) == True):
+            s = input
+            s = s + "$"
+
+            def helper(stack, i):
+                num = 0
+                sign = '+'
+                while i < len(s):
+                    c = s[i]
+                    if c == " ":
+                        i = self.increment(i)
+                        continue
+                    if c.isdigit():
+                        num = self.multiply(num, 10) + int(c)
+                        i = self.increment(i)
+                    elif c == '(':
+                        num, i = helper([], i + 1)
+                    else:
+                        if sign == '+':
+                            stack.append(num)
+                        if sign == '-':
+                            stack.append(-num)
+                        if sign == '*':
+                            stack.append(self.multiply(stack.pop(), num))
+                        if sign == '/':
+                            stack.append(self.division(int(stack.pop()), num))
+                        num = 0
+                        i = self.increment(i)
+                        if c == ')':
+                            return sum(stack), i
+                        sign = c
+                return sum(stack)
+
+            return helper([], 0)
+        else:
+            raise ValueError
