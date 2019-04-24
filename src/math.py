@@ -62,3 +62,37 @@ class Math(object):
                 sign = s[i]
                 num = 0
         return sum(stack)
+
+    def calc_p(self, input):
+        s = input
+        s = s + "$"
+        def helper(stack, i):
+            num = 0
+            sign = '+'
+            while i < len(s):
+                c = s[i]
+                if c == " ":
+                    i = self.increment(i)
+                    continue
+                if c.isdigit():
+                    num = self.multiply(num, 10) + int(c)
+                    i = self.increment(i)
+                elif c == '(':
+                    num, i = helper([], i + 1)
+                else:
+                    if sign == '+':
+                        stack.append(num)
+                    if sign == '-':
+                        stack.append(-num)
+                    if sign == '*':
+                        stack.append(self.multiply(stack.pop(), num))
+                    if sign == '/':
+                        stack.append(self.division(int(stack.pop()),num))
+                    num = 0
+                    i = self.increment(i)
+                    if c == ')':
+                        return sum(stack), i
+                    sign = c
+            return sum(stack)
+
+        return helper([], 0)
